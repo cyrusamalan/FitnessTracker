@@ -18,6 +18,7 @@ def create_planner_table():
         planner = f'''CREATE TABLE IF NOT EXISTS planner.{configparser.formatted_date} (
                         food_id TEXT PRIMARY KEY,
                         food_name TEXT,
+                        calories REAL,
                         fat REAL,
                         carbs REAL,
                         protein REAL,
@@ -63,7 +64,7 @@ def insert_in_planner():
         planner_table_name = f"planner.{configparser.formatted_date}"
 
         # Perform the SELECT query
-        select_query = '''SELECT food_id, food_name, fat, carbs, protein
+        select_query = '''SELECT food_id, food_name, calories, fat, carbs, protein
                           FROM food_data WHERE food_id = %s;'''
         cursor.execute(select_query, (food_id,))
         row = cursor.fetchone()
@@ -71,14 +72,14 @@ def insert_in_planner():
         if row:
             print("Selected Data:", row)
             # Extract the data
-            food_id, food_name, fat, carbs, protein = row
+            food_id, food_name, calories, fat, carbs, protein = row
 
             # Perform the INSERT query
             insert_query = f'''INSERT INTO planner.{configparser.formatted_date} 
-                               (food_id, food_name, fat, carbs, protein, servings, type)
-                               VALUES (%s, %s, %s, %s, %s, %s, %s)
+                               (food_id, food_name, calories, fat, carbs, protein, servings, type)
+                               VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                                ON CONFLICT (food_id) DO NOTHING;'''
-            cursor.execute(insert_query, (food_id, food_name, fat, carbs, protein, servings, meal_type))
+            cursor.execute(insert_query, (food_id, food_name, calories, fat, carbs, protein, servings, meal_type))
             conn.commit()
             print("Data inserted successfully into the planner table.")
         else:
