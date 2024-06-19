@@ -5,6 +5,7 @@ import food_ai
 import food
 import configparser
 
+configparser.host = "localhost"
 # FatSecret API credentials
 fs = Fatsecret('d1dc16bc0ff248d996719575cabf705c','366f68b488f7419e9a3705e17a2ae73f')
 
