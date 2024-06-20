@@ -98,6 +98,7 @@ def login_user(username, password):
             if bcrypt.checkpw(password.encode('utf-8'), stored_password.encode('utf-8')):
                 print("Login successful.")
                 configparser.var = 1
+                configparser.user_id = user[0]
                 return user[0]  # Return user_id
             else:
                 print("Password mismatch.")

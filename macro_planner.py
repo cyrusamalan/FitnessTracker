@@ -16,7 +16,9 @@ def create_planner_table():
 
         #Create table query
         planner = f'''CREATE TABLE IF NOT EXISTS planner.{configparser.formatted_date} (
-                        food_id TEXT PRIMARY KEY,
+                        id SERIAL PRIMARY KEY,
+                        user_id INT,
+                        food_id TEXT,
                         food_name TEXT,
                         calories REAL,
                         fat REAL,
@@ -26,7 +28,10 @@ def create_planner_table():
                         type TEXT,
                         CONSTRAINT fk_food
                           FOREIGN KEY(food_id)
-                          REFERENCES public.food_data(food_id)
+                          REFERENCES public.food_data(food_id),
+                        CONSTRAINT fk_user
+                          FOREIGN KEY(user_id)
+                          REFERENCES planner.users(user_id)
                         );'''
         cursor.execute(planner)
         conn.commit()
@@ -39,7 +44,7 @@ def create_planner_table():
         if conn:
             conn.close()
 
-def insert_in_planner():
+def insert_in_planner(user_id):
     food_id = str(input("Insert food ID: "))
     meal_type = str(input("Breakfast/Lunch/Dinner(b,l,d): "))
     servings = float(input("Serving Size: "))
@@ -73,13 +78,13 @@ def insert_in_planner():
             print("Selected Data:", row)
             # Extract the data
             food_id, food_name, calories, fat, carbs, protein = row
-
+            user_id = configparser.user_id
             # Perform the INSERT query
             insert_query = f'''INSERT INTO planner.{configparser.formatted_date} 
-                               (food_id, food_name, calories, fat, carbs, protein, servings, type)
-                               VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-                               ON CONFLICT (food_id) DO NOTHING;'''
-            cursor.execute(insert_query, (food_id, food_name, calories, fat, carbs, protein, servings, meal_type))
+                               (user_id, food_id, food_name, calories, fat, carbs, protein, servings, type)
+                               VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                               ;'''
+            cursor.execute(insert_query, (configparser.user_id, food_id, food_name, calories, fat, carbs, protein, servings, meal_type))
             conn.commit()
             print("Data inserted successfully into the planner table.")
         else:

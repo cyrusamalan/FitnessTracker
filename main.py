@@ -31,7 +31,7 @@ def main():
         food.insert_recipe_nutrition(recipes)
         food.select_food()
         macro_planner.create_planner_table()
-        macro_planner.insert_in_planner()
+        macro_planner.insert_in_planner(configparser.user_id)
 
 
 
