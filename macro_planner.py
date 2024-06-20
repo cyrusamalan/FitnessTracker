@@ -9,7 +9,7 @@ def create_planner_table():
             dbname="postgres",
             user="postgres",
             password="Cyrus!234",
-            host= configparser.host,
+            host="localhost",
             port="5432"
         )
         cursor = conn.cursor()
@@ -56,7 +56,7 @@ def insert_in_planner():
             dbname="postgres",
             user="postgres",
             password="Cyrus!234",
-            host=configparser.host,
+            host="localhost",
             port="5432"
         )
         cursor = conn.cursor()
@@ -92,4 +92,5 @@ def insert_in_planner():
             cursor.close()
         if conn:
             conn.close() 
+
 

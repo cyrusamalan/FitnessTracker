@@ -12,7 +12,7 @@ def create_recipe_table():
             dbname="postgres",
             user="postgres",
             password="Cyrus!234",
-            host=configparser.host,
+            host="localhost",
             port="5432"
         )
         cursor = conn.cursor()
@@ -40,7 +40,7 @@ def create_recipe_nutrition_table():
             dbname="postgres",
             user="postgres",
             password="Cyrus!234",
-            host=configparser.host,
+            host="localhost",
             port="5432"
         )
         cursor = conn.cursor()
@@ -74,7 +74,7 @@ def create_food_table():
             dbname="postgres",
             user="postgres",
             password="Cyrus!234",
-            host=configparser.host,
+            host="localhost",
             port="5432"
         )
         cursor = conn.cursor()
@@ -131,7 +131,7 @@ def insert_food_data(food_data):
             dbname="postgres",
             user="postgres",
             password="Cyrus!234",
-            host=configparser.host,
+            host="localhost",
             port="5432"
         )
         cursor = conn.cursor()
@@ -179,7 +179,7 @@ def insert_recipe_data(recipe_data):
             dbname="postgres",
             user="postgres",
             password="Cyrus!234",
-            host=configparser.host,
+            host="localhost",
             port="5432"
         )
         cursor = conn.cursor()
@@ -217,7 +217,7 @@ def insert_recipe_nutrition(food_data):
             dbname="postgres",
             user="postgres",
             password="Cyrus!234",
-            host=configparser.host,
+            host="localhost",
             port="5432"
         )
         cursor = conn.cursor()
@@ -258,7 +258,7 @@ def select_food():
         dbname="postgres",
         user="postgres",
         password="Cyrus!234",
-        host=configparser.host,
+        host="localhost",
         port="5432"
         )
         cursor = conn.cursor()
