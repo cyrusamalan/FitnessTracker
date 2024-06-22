@@ -8,7 +8,7 @@ import auth
 
 
 # FatSecret API credentials
-fs = Fatsecret('d1dc16bc0ff248d996719575cabf705c','366f68b488f7419e9a3705e17a2ae73f')
+fs = Fatsecret('consumer key','consumer secret')
 
 today = date.today()
 # Format the date
