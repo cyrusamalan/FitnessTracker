@@ -263,7 +263,7 @@ def select_food():
         )
         cursor = conn.cursor()
         query = '''SELECT food_id, food_name, calories FROM food_data 
-                   WHERE food_name LIKE %s;'''
+                   WHERE food_name ILIKE %s;'''
         cursor.execute(query, (f"%{configparser.food_item}%",))
         print(configparser.food_item)
         # Fetch and print the results

@@ -18,7 +18,7 @@ configparser.var = 0
 def main():
     auth.create_user_table()
     configparser.account = str(input("Do you have an account?(y/n)"))
-    auth.account_info()
+    auth.account_info() 
     if configparser.var == 1: 
         food.create_food_table()
         food.create_recipe_table()
